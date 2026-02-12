@@ -52,9 +52,25 @@ export class App {
   ];
 
   constructor(private chatService: ChatService){
+    this.currentUser = this.userList[0];
+
     this.chatService.getMessage()
     .subscribe((data:{user: string, message: string})=>{
       this.messageArray.push(data);
     })
+  }
+
+  selectUserHandler(phone: string): void{
+
+
+    this.selectedUser = this.userList.find(user => user.phone === phone);
+    this.roomId = this.selectedUser.roomId[this.selectedUser.id];
+    this.messageArray = [];
+
+    this.join(this.currentUser.name, this.roomId);
+  }
+
+  join(username: string, roomId: string): void{
+    this.chatService.joinRoom({user: username, roomId: roomId});
   }
 }
