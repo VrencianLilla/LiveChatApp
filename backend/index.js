@@ -20,6 +20,6 @@ io.on("connection", (socket) => {
     });
 
     socket.on("message", (data) => {
-        io.in(data.room).emit("new message", { user: data.user, message: data.message });
+        io.in(data.room).emit("new message", { user: data.user, message: data.message, timestamp: new Date().toString() });
     });
 });

@@ -22,7 +22,9 @@
         </div>
         <div class="messages-area">
             <div *ngFor="let msg of messages" class="message-bubble" [class.own]="isOwnMessage(msg)">
-                <div class="sender">{{ msg.user }}</div>
+                <div class="sender">{{ msg.user }}
+                    <span class="time">{{ msg.timestamp | date:'shortTime' }}</span>
+                </div>
                 <div class="text">{{ msg.message }}</div>
             </div>
         </div>

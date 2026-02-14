@@ -19,7 +19,7 @@ export class App {
 
   isDarkMode = false;  //for dark mode function
 
-  messages: { user: string; message: string }[] = [];
+  messages: { user: string; message: string; timestamp: string }[] = [];
 
   constructor(private chatService: ChatService) { }
 
