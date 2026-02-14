@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+body.dark-mode .container{
+    background: #1e1f25;
+}
+
+body.dark-mode .chat-container {
+    background: #2a2b31;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .chat-header {
+    background: #3b3d45;
+}
+
+body.dark-mode .messages-area {
+    background: #23242a;
+}
+
+body.dark-mode .message-bubble {
+    background: #3b3d45;
+    color: #e6e6e6;
+}
+
+body.dark-mode .message-bubble.own {
+    background: #4a6cf7;
+    color: white;
+}
+
+body.dark-mode .input-bar {
+    background: #2a2b31;
+    border-top: 1px solid #444;
+}
+
+body.dark-mode .input-bar input {
+    background: #3b3d45;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark-mode .dark-toggle{
+    color:#ffd369;
+}
+
+.dark-toggle svg{
+    color: inherit;
+    fill: currentColor;
+}

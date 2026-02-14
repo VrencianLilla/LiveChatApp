@@ -17,6 +17,8 @@ export class App {
   messageText = '';
   isLoggedIn = false;
 
+  isDarkMode = false;
+
   messages: { user: string; message: string }[] = [];
 
   constructor(private chatService: ChatService) { }
@@ -45,6 +47,11 @@ export class App {
 
     this.chatService.sendMessage(msg);
     this.messageText = '';
+  }
+
+  toggleDarkMode(): void {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
   }
 
   isOwnMessage(msg: any): boolean { return msg.user === this.username; }  // for UI
