@@ -8,7 +8,7 @@ import { io, Socket } from 'socket.io-client';
 export class ChatService {
   private socket: Socket;
   // private url = "http://localhost:3000";
-  private url = "https://livechat-backend.onrender.com";
+  private url = "https://livechatapp-bd18.onrender.com";
 
   constructor() {
     this.socket = io(this.url, {
