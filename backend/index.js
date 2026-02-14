@@ -8,7 +8,9 @@ let socketIO = require("socket.io");
 let io = socketIO(server, {
     cors: {
         origin: "*",
-        methods: ["GET", "POST"]
+        methods: ["GET", "POST"],
+        allowedHeaders: ["*"],
+        credentials: true
     }
 });
 

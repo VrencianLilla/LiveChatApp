@@ -7,11 +7,13 @@ import { io, Socket } from 'socket.io-client';
 })
 export class ChatService {
   private socket: Socket;
-  private url = "http://localhost:3000";
+  // private url = "http://localhost:3000";
+  private url = "https://livechat-backend.onrender.com";
 
   constructor() {
     this.socket = io(this.url, {
-      transports: ['websocket', 'polling']
+      transports: ['websocket', 'polling'],
+      withCredentials: false
     });
   }
 
