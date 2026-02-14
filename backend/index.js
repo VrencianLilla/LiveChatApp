@@ -5,7 +5,12 @@ let http = require("http");
 let server = http.Server(app);
 
 let socketIO = require("socket.io");
-let io = socketIO(server);
+let io = socketIO(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
 
 const port = process.env.PORT || 3000;
 
