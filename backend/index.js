@@ -16,7 +16,7 @@ server.listen(port, () => {
 io.on("connection", (socket) => {
     socket.on('join', (data) => {
         socket.join(data.room);
-        socket.broadcast.to(data.room).emit("user joined");
+        socket.broadcast.to(data.room).emit("join", { user: data.user });
     });
 
     socket.on("message", (data) => {

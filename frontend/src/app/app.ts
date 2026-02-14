@@ -17,7 +17,7 @@ export class App {
   messageText = '';
   isLoggedIn = false;
 
-  isDarkMode = false;
+  isDarkMode = false;  //for dark mode function
 
   messages: { user: string; message: string }[] = [];
 
@@ -49,7 +49,7 @@ export class App {
     this.messageText = '';
   }
 
-  toggleDarkMode(): void {
+  toggleDarkMode(): void {  //for Dark mode
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-mode', this.isDarkMode);
   }
