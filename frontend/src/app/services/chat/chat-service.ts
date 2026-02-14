@@ -10,27 +10,32 @@ export class ChatService {
   private url = "http://localhost:3000";
 
   constructor() {
-    this.socket = io(this.url);
+    this.socket = io(this.url, {
+      transports: ['websocket', 'polling']
+    });
   }
 
-  joinRoom(data: any): void {
+  joinRoom(data: {user: string; room: string}): void {
     this.socket.emit('join', data);
   }
 
-  sendMessage(data: any): void {
+  sendMessage(data: {user: string; room: string; message: string}): void {
     this.socket.emit('message', data)
   }
 
   getMessage(): Observable<any> {
-    return new Observable<{ user: string; message: string; }>(observer => {
+    return new Observable(observer => {
       this.socket.on("new message", (data) => {
         observer.next(data);
       });
 
-      return () => {
-        this.socket.disconnect();
-      }
+      this.socket.on("join", () => {
+        observer.next({
+          user: 'SYSTEM',
+          message: 'A new user joined'
+        });
+      });
     });
   }
-
+  
 }

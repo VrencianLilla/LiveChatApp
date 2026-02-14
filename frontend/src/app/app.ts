@@ -1,76 +1,51 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+// import { RouterOutlet } from '@angular/router';  I don't need this, because i dont have multiple pages and I dont need navigation between routes like /login /chat etc.
 import { ChatService } from './services/chat/chat-service';
+import { CommonModule } from '@angular/common';  //gives you access to *ngIf *ngFor
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('frontend');
-  roomId = '';
+  // protected readonly title = signal('frontend');
+
+  username = '';
   messageText = '';
-  messageArray: { user: string; message: string }[] = [];
-  phone = '';
-  currentUser: any;
-  selectedUser: any;
+  isLoggedIn = false;
 
-  userList = [
-    {
-      id: 1,
-      name: 'Pingu',
-      phone: '9876598765',
-      image: 'assets/user/user1.jpg',
-      roomId: {
-        2: 'room-2',
-        3: 'room-3'
-      }
-    },
-    {
-      id: 2,
-      name: 'Fram',
-      phone: '9876598762',
-      image: 'assets/user/user2.jpg',
-      roomId: {
-        1: 'room-1',
-        3: 'room-3'
-      }
-    },
-    {
-      id: 3,
-      name: 'Racoon',
-      phone: '9876598764',
-      image: 'assets/user/user3.jpg',
-      roomId: {
-        1: 'room-1',
-        2: 'room-2'
-      }
-    },
-  ];
+  messages: { user: string; message: string }[] = [];
 
-  constructor(private chatService: ChatService){
-    this.currentUser = this.userList[0];
+  constructor(private chatService: ChatService) { }
 
+  ngOnInit(): void {
     this.chatService.getMessage()
-    .subscribe((data:{user: string, message: string})=>{
-      this.messageArray.push(data);
-    })
+      .subscribe(data => {
+        this.messages.push(data);
+      });
   }
 
-  selectUserHandler(phone: string): void{
-
-
-    this.selectedUser = this.userList.find(user => user.phone === phone);
-    this.roomId = this.selectedUser.roomId[this.selectedUser.id];
-    this.messageArray = [];
-
-    this.join(this.currentUser.name, this.roomId);
+  login(): void {
+    if (!this.username.trim()) return;
+    this.isLoggedIn = true;
+    this.chatService.joinRoom({ user: this.username, room: 'main' });
   }
 
-  join(username: string, roomId: string): void{
-    this.chatService.joinRoom({user: username, roomId: roomId});
+  sendMessage(): void {
+    if (!this.messageText.trim()) return;
+
+    const msg = {
+      user: this.username,
+      room: 'main',
+      message: this.messageText
+    };
+
+    this.chatService.sendMessage(msg);
+    this.messageText = '';
   }
+
+  isOwnMessage(msg: any): boolean { return msg.user === this.username; }  // for UI
 }
