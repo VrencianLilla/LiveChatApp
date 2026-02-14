@@ -29,13 +29,13 @@ export class ChatService {
         observer.next(data);
       });
 
-      this.socket.on("join", () => {
+      this.socket.on("join", (data) => {
         observer.next({
           user: 'SYSTEM',
-          message: 'A new user joined'
+          message: `${data.user} new user joined`
         });
       });
     });
   }
-  
+
 }
