@@ -8,7 +8,7 @@ La accesarea linkului https://frontend-qcrggiub4-lillas-projects-f6353234.vercel
 In zoda de chat, utilizatorii pot trimite si primi mesaje instant. Toti utilizatorii conectati pot vedea in timp real mesajele celorlalti, ceea ce permite o comunicare rapida si eficienta.
 Aplicatia suporta mai multi utilizatori simultan, fiecare avand posibilitatea de a raporta probleme, de a cere ajutor sau de a discuta intre ei.
 Atunci cand un nou utilizator se conecteaza, toti ceilalti primesc automat in chat un mesaj de sistem de forma: SYSTEM: *numele utilizatorului care a intrat in conversatie* joined the chat. Acest mesaj ii anunta pe toti ca un nou particiapant a intrat in conversatie.
-De asemenea, fiecare mesaj afiseaza ora exacta in care a fost trimisa, pentru a pastra claritatea si contextul discutie.
+De asemenea, fiecare mesaj afiseaza ora exacta in care a fost trimisa, pentru a pastra claritatea si contextul discutie. (Trebuie sa scrieti pe campul de text ceva ca sa puteti vizualiza mesajul anterior)
 
 ## Instructiuni pentru instalare si rulare
 ### Clonarea proiectului:
